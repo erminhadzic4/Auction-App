@@ -1,15 +1,9 @@
 import React from "react";
+import { divPlaceholderStyle } from "./styles";
 
 const PrivacyAndPolicy = () => {
   return (
-    <div
-      style={{
-        minHeight: "586px",
-        display: "grid",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+    <div style={divPlaceholderStyle}>
       <h1>Privacy Policy for AuctionApp</h1>
 
       <p>

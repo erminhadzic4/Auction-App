@@ -1,18 +1,8 @@
 import React from "react";
+import { divPlaceholderStyle } from "./styles";
 
 const MyAccount = () => {
-  return (
-    <div
-      style={{
-        minHeight: "586px",
-        display: "grid",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      My Account Page Content
-    </div>
-  );
+  return <div style={divPlaceholderStyle}>My Account Page Content</div>;
 };
 
 export default MyAccount;

@@ -1,7 +1,9 @@
+@import "./constants.css";
+
 .footer {
   display: flex;
-  background-color: #252525;
-  color: white;
+  background-color: var(--neutral-00);
+  color: var(--white);
   align-items: center;
   padding: 20px;
   align-items: baseline;
@@ -18,7 +20,7 @@
 }
 
 .column .row:first-child {
-  color: #929292;
+  color: var(--neutral-05);
 }
 
 .social-icon {
@@ -31,15 +33,15 @@
   width: 70%;
   background-color: #3b3b3b;
   border: none;
-  color: white;
+  color: var(--white);
   height: 25px;
 }
 
 .row button {
   padding: 5px 10px;
-  background-color: #252525;
-  color: white;
-  border: 2px solid #8367d8;
+  background-color: var(--neutral-00);
+  color: var(--white);
+  border: 2px solid var(--primary-color);
   cursor: pointer;
   margin-left: 10px;
   height: 35px;
@@ -50,16 +52,16 @@
 }
 
 .footer .column .row a {
-  color: #ffffff;
+  color: var(--white);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer .column .row a:hover {
-  color: #8367d8;
+  color: var(--primary-color);
 }
 
 .footer .column .row a.active {
-  color: #8367d8;
+  color: var(--primary-color);
   font-weight: bold;
 }

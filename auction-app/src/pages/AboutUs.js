@@ -1,33 +1,15 @@
 import React from "react";
+import {
+  containerStyle,
+  headingStyle,
+  paragraphStyle,
+  linkStyle,
+  divPlaceholderStyle,
+} from "./styles";
 
 const AboutUs = () => {
-  const containerStyle = {
-    color: "black",
-    textAlign: "center",
-    margin: "0 auto",
-    padding: "8px",
-    maxWidth: "800px",
-  };
-
-  const headingStyle = {
-    color: "black",
-    textAlign: "center",
-  };
-
-  const paragraphStyle = {
-    color: "black",
-    textAlign: "justify",
-  };
-
   return (
-    <div
-      style={{
-        minHeight: "586px",
-        display: "grid",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+    <div style={divPlaceholderStyle}>
       <div style={containerStyle}>
         <h4 style={headingStyle}>
           Welcome To <span id="W_Name1">AuctionApp</span>
@@ -151,19 +133,10 @@ const AboutUs = () => {
           you. Please give your support and love.
         </p>
 
-        <p style={{ color: "black", fontWeight: "bold", textAlign: "center" }}>
+        <p style={headingStyle}>
           Thanks For Visiting Our Site<br></br>
           <br></br>
-          <span
-            style={{
-              backgroundColor: "white",
-              color: "blue",
-              fontSize: "17px",
-              fontWeight: "bold",
-            }}
-          >
-            Have a nice day!
-          </span>
+          <span style={linkStyle}>Have a nice day!</span>
         </p>
       </div>
     </div>

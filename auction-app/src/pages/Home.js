@@ -1,18 +1,8 @@
 import React from "react";
+import { divPlaceholderStyle } from "./styles";
 
 const Home = () => {
-  return (
-    <div
-      style={{
-        minHeight: "586px",
-        display: "grid",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      Home Page Content
-    </div>
-  );
+  return <div style={divPlaceholderStyle}>Home Page Content</div>;
 };
 
 export default Home;
