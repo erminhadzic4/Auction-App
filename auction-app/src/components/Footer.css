@@ -1,0 +1,67 @@
+@import "./constants.css";
+
+.footer {
+  display: flex;
+  background-color: var(--neutral-00);
+  color: var(--white);
+  align-items: center;
+  padding: 20px;
+  align-items: baseline;
+}
+
+.column {
+  padding: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.column .row:first-child {
+  color: var(--neutral-05);
+}
+
+.social-icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.row input[type="email"] {
+  padding: 5px;
+  width: 70%;
+  background-color: #3b3b3b;
+  border: none;
+  color: var(--white);
+  height: 25px;
+}
+
+.row button {
+  padding: 5px 10px;
+  background-color: var(--neutral-00);
+  color: var(--white);
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  margin-left: 10px;
+  height: 35px;
+}
+
+.footer .column .row {
+  margin-bottom: 10px;
+}
+
+.footer .column .row a {
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer .column .row a:hover {
+  color: var(--primary-color);
+}
+
+.footer .column .row a.active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
