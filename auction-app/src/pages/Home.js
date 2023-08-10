@@ -1,8 +1,8 @@
 import React from "react";
-import { divPlaceholderStyle } from "./styles";
+import "./Styles.css";
 
 const Home = () => {
-  return <div style={divPlaceholderStyle}>Home Page Content</div>;
+  return <div className="div-placeholder-style">Home Page Content</div>;
 };
 
 export default Home;

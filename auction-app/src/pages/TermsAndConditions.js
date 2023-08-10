@@ -1,9 +1,9 @@
 import React from "react";
-import { divPlaceholderStyle } from "./styles";
+import "./Styles.css";
 
 const TermsAndConditions = () => {
   return (
-    <div style={divPlaceholderStyle}>
+    <div className="div-placeholder-style">
       <h1>Terms and Conditions for AuctionApp</h1>
 
       <h2>Introduction</h2>

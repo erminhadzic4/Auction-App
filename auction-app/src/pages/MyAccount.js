@@ -1,8 +1,8 @@
 import React from "react";
-import { divPlaceholderStyle } from "./styles";
+import "./Styles.css";
 
 const MyAccount = () => {
-  return <div style={divPlaceholderStyle}>My Account Page Content</div>;
+  return <div className="div-placeholder-style">My Account Page Content</div>;
 };
 
 export default MyAccount;

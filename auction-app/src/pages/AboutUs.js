@@ -1,20 +1,14 @@
 import React from "react";
-import {
-  containerStyle,
-  headingStyle,
-  paragraphStyle,
-  linkStyle,
-  divPlaceholderStyle,
-} from "./styles";
+import "./Styles.css";
 
 const AboutUs = () => {
   return (
-    <div style={divPlaceholderStyle}>
-      <div style={containerStyle}>
-        <h4 style={headingStyle}>
+    <div className="div-placeholder-style">
+      <div className="container-style">
+        <h4 className="heading-style">
           Welcome To <span id="W_Name1">AuctionApp</span>
         </h4>
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           Hello and Welcome to our Website{" "}
           <b>
             <span id="W_Name2">AuctionApp</span>
@@ -28,7 +22,7 @@ const AboutUs = () => {
           provides you ideas about all the updated information that’s happening
           in the world.
         </p>
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           In the below section, you can get more ideas about our site like our
           website category and content category. If you have additional
           questions or require more information, don’t hesitate to contact us
@@ -39,8 +33,8 @@ const AboutUs = () => {
           or you can contact us through our contact us form.
         </p>
 
-        <h4 style={headingStyle}>What is Our Goal?</h4>
-        <p style={paragraphStyle}>
+        <h4 className="heading-style">What is Our Goal?</h4>
+        <p className="paragraph-style">
           There are millions of websites created every day, also, there is much
           fake content spread on the internet. <b>Our main goal</b> is to
           provide you with <b>100% Original and Safe content</b> that provides
@@ -50,8 +44,8 @@ const AboutUs = () => {
           for new content and present it in front of you to learn something new.
         </p>
 
-        <h4 style={headingStyle}>What is our Service?</h4>
-        <p style={paragraphStyle}>
+        <h4 className="heading-style">What is our Service?</h4>
+        <p className="paragraph-style">
           We are mainly focused on{" "}
           <b>
             <span id="W_Spec1">Shopping and Selling</span>
@@ -70,7 +64,7 @@ const AboutUs = () => {
           can visit our website homepage to know all category details.
         </p>
 
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           This Website is Created to help people because many people are still
           spending hours of time to get exact information so, this is the only
           motive to create{" "}
@@ -82,7 +76,7 @@ const AboutUs = () => {
           go down to know about Admin details.
         </p>
 
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           Admin’s Statement for{" "}
           <b>
             <span id="W_Name5">AuctionApp</span>
@@ -100,8 +94,8 @@ const AboutUs = () => {
           thanks for visiting our website.
         </p>
 
-        <h4 style={headingStyle}>Admin’s Contact Information</h4>
-        <p style={paragraphStyle}>
+        <h4 className="heading-style">Admin’s Contact Information</h4>
+        <p className="paragraph-style">
           Hi, this{" "}
           <b>
             <span id="Y_Name1">Ermin</span>
@@ -112,18 +106,18 @@ const AboutUs = () => {
           website then you can contact me by using following contact details.
         </p>
 
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           <b>
             Name: <span id="Y_Name2">Ermin</span>
           </b>
         </p>
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           <b>
             Email: <span id="Y_Email2">hadzicermin34@yahoo.com</span>
           </b>
         </p>
 
-        <p style={paragraphStyle}>
+        <p className="paragraph-style">
           Finally, this is our complete about us page about details are showing
           what is the motive to create{" "}
           <b>
@@ -133,10 +127,10 @@ const AboutUs = () => {
           you. Please give your support and love.
         </p>
 
-        <p style={headingStyle}>
+        <p className="heading-style">
           Thanks For Visiting Our Site<br></br>
           <br></br>
-          <span style={linkStyle}>Have a nice day!</span>
+          <span className="link-style">Have a nice day!</span>
         </p>
       </div>
     </div>

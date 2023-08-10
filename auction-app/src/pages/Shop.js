@@ -1,8 +1,8 @@
 import React from "react";
-import { divPlaceholderStyle } from "./styles";
+import "./Styles.css";
 
 const Shop = () => {
-  return <div style={divPlaceholderStyle}>Shop Page Content</div>;
+  return <div className="div-placeholder-style">Shop Page Content</div>;
 };
 
 export default Shop;

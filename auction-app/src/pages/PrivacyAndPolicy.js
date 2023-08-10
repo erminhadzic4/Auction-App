@@ -1,9 +1,9 @@
 import React from "react";
-import { divPlaceholderStyle } from "./styles";
+import "./Styles.css";
 
 const PrivacyAndPolicy = () => {
   return (
-    <div style={divPlaceholderStyle}>
+    <div className="div-placeholder-style">
       <h1>Privacy Policy for AuctionApp</h1>
 
       <p>
