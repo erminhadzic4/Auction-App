@@ -40,9 +40,13 @@ const Header = () => {
           </a>
         </div>
         <div className="user-actions">
-          <span className="user-action"> Login</span>
+          <span className="user-action">
+            <Link to="/login">Login</Link>
+          </span>
           <span className="user-action-secondary"> or </span>
-          <span className="user-action"> Create Account </span>
+          <span className="user-action">
+            <Link to="/register">Create Account</Link>
+          </span>
         </div>
       </div>
 

@@ -7,7 +7,9 @@ import Shop from "./pages/Shop";
 import MyAccount from "./pages/MyAccount";
 import AboutUs from "./pages/AboutUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import Login from "./pages/Login";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/privacy-and-policy" element={<PrivacyAndPolicy />} />
