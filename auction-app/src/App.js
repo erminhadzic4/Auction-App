@@ -10,6 +10,8 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import Login from "./pages/Login";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
 import Register from "./pages/Register";
+// import LoginForm from "./pages/LoginForm";
+// import RegisterForm from "./pages/RegisterForm";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* <Route path="/login" element={<LoginForm />} /> */}
+        {/* <Route path="/register" element={<RegisterForm />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/privacy-and-policy" element={<PrivacyAndPolicy />} />
