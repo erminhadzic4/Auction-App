@@ -1,0 +1,42 @@
+@import "./constants.css";
+
+.container-style {
+  color: "black";
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px;
+  max-width: 650px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.heading-style {
+  color: black;
+  text-align: center;
+}
+
+.paragraph-style {
+  text-align: justify;
+  color: var(--neutral-05);
+}
+
+.container-style .title {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-align: justify;
+  color: var(--neutral-00);
+}
+
+.link-style {
+  background-color: white;
+  color: blue;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.div-placeholder-style {
+  min-height: 586px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+}
