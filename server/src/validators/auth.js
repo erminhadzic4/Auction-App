@@ -18,6 +18,10 @@ const lastname = check("lastname")
   .isLength({ min: 1 })
   .withMessage("Lastname must have at least 1 character.");
 
+const categoryName = check("name")
+  .isLength({ min: 1 })
+  .withMessage("Category name must have at least 1 character.");
+
 const emailExists = check("email").custom(async (value) => {
   const { rows } = await db.query("SELECT * from users WHERE email = $1", [
     value,
@@ -25,6 +29,16 @@ const emailExists = check("email").custom(async (value) => {
 
   if (rows.length) {
     throw new Error("User is already registered with that email.");
+  }
+});
+
+const categoryExists = check("name").custom(async (value) => {
+  const { rows } = await db.query("SELECT * from categories WHERE name = $1", [
+    value,
+  ]);
+
+  if (rows.length) {
+    throw new Error("That category is already added.");
   }
 });
 
@@ -47,4 +61,5 @@ const loginFieldsCheck = check("email").custom(async (value, { req }) => {
 module.exports = {
   registerValidation: [firstname, lastname, email, password, emailExists],
   loginValidation: [loginFieldsCheck],
+  categoryValidation: [categoryName, categoryExists],
 };

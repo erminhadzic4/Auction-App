@@ -18,6 +18,19 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+exports.getCategories = async (req, res) => {
+  try {
+    const { rows } = await db.query("select name from categories");
+
+    return res.status(200).json({
+      success: true,
+      users: rows,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.register = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
   try {
@@ -82,6 +95,24 @@ exports.logout = async (req, res) => {
     return res.status(200).clearCookie("token", { httpOnly: true }).json({
       success: true,
       message: "Logged out succefully",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+exports.createCategory = async (req, res) => {
+  const { name } = req.body;
+
+  try {
+    await db.query("insert into categories (name) values ($1)", [name]);
+
+    return res.status(201).json({
+      success: true,
+      message: "Category created successfully",
     });
   } catch (error) {
     console.log(error.message);
