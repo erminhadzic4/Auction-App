@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Styles.css";
 import Layout from "../components/Layout";
-import { useDispatch } from "react-redux";
 import { fetchProtectedInfo, onLogout } from "../services/auth";
-import { unauthenticateUser } from "../redux/slices/authSlice";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const MyAccount = () => {
-  const dispatch = useDispatch();
+  const auth = useAuth();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [protectedData, setProtectedData] = useState(null);
 
   const logout = async () => {
     try {
       await onLogout();
-      dispatch(unauthenticateUser());
-      localStorage.removeItem("isAuth");
-      localStorage.removeItem("firstname");
-      localStorage.removeItem("lastname");
+      auth.logout();
+      navigate("/login");
     } catch (error) {
       console.log(error.response);
     }

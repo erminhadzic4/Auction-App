@@ -8,6 +8,7 @@ const Footer = () => {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+
   return (
     <footer className="footer">
       <div className="column">
@@ -39,30 +40,30 @@ const Footer = () => {
         </div>
         <div className="row">support@auction.com</div>
         <div className="row">
-          <a
-            href="https://www.instagram.com/ha.ermin/?hl=en"
+          <Link
+            to="https://www.instagram.com/ha.ermin/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaInstagram />
-          </a>
-          <a
-            href="https://www.github.com/erminhadzic4"
+          </Link>
+          <Link
+            to="https://www.github.com/erminhadzic4"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaGithub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ermin-had%C5%BEi%C4%87-0a939b228/"
+          </Link>
+          <Link
+            to="https://www.linkedin.com/in/ermin-had%C5%BEi%C4%87-0a939b228/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaLinkedin />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="column">

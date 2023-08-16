@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import "../styles/Header.css";
-import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { isAuth } = useSelector((state) => state.auth);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
 
@@ -24,13 +22,16 @@ const Header = () => {
     setActiveLink(link);
   };
 
-  const isSpecialRoute =
-    location.pathname === "/my-account" ||
-    location.pathname === "/about-us" ||
-    location.pathname === "/terms-and-conditions" ||
-    location.pathname === "/privacy-and-policy" ||
-    location.pathname === "/home" ||
-    location.pathname === "/shop";
+  const specialRoutes = [
+    "/my-account",
+    "/about-us",
+    "/terms-and-conditions",
+    "/privacy-and-policy",
+    "/home",
+    "/shop",
+  ];
+
+  const isSpecialRoute = specialRoutes.includes(location.pathname);
 
   const headerContent = !isSpecialRoute ? (
     <div className="logo-container-special">
@@ -62,7 +63,7 @@ const Header = () => {
         >
           SHOP
         </Link>
-        {isAuth ? (
+        {localStorage.getItem("isAuth") === "true" ? (
           <Link
             to="/my-account"
             className={`navigation-link ${
@@ -79,51 +80,53 @@ const Header = () => {
     </>
   );
 
-  const greeting = isAuth ? (
-    <span className="user-action">
-      {" "}
-      Hi, {localStorage.getItem("firstname")} {localStorage.getItem("lastname")}
-    </span>
-  ) : (
-    <>
+  const greeting =
+    localStorage.getItem("isAuth") === "true" ? (
       <span className="user-action">
-        <Link to="/login">Login</Link>
+        {" "}
+        Hi, {localStorage.getItem("firstname")}{" "}
+        {localStorage.getItem("lastname")}
       </span>
-      <span className="user-action-secondary"> or </span>
-      <span className="user-action">
-        <Link to="/register">Create Account</Link>
-      </span>
-    </>
-  );
+    ) : (
+      <>
+        <span className="user-action">
+          <Link to="/login">Login</Link>
+        </span>
+        <span className="user-action-secondary"> or </span>
+        <span className="user-action">
+          <Link to="/register">Create Account</Link>
+        </span>
+      </>
+    );
 
   return (
     <div>
       <div className="black-header">
         <div className="social-icons">
-          <a
-            href="https://www.instagram.com/ha.ermin/?hl=en"
+          <Link
+            to="https://www.instagram.com/ha.ermin/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaInstagram size={25} />
-          </a>
-          <a
-            href="https://www.github.com/erminhadzic4"
+          </Link>
+          <Link
+            to="https://www.github.com/erminhadzic4"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaGithub size={25} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ermin-had%C5%BEi%C4%87-0a939b228/"
+          </Link>
+          <Link
+            to="https://www.linkedin.com/in/ermin-had%C5%BEi%C4%87-0a939b228/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
             <FaLinkedin size={25} />
-          </a>
+          </Link>
         </div>
         <div className="user-actions">{greeting}</div>
       </div>

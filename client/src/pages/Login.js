@@ -6,8 +6,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import "../styles/Login.css";
 import Layout from "../components/Layout";
 import { onLogin } from "../services/auth";
-import { useDispatch } from "react-redux";
-import { authenticateUser } from "../redux/slices/authSlice";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -15,19 +15,17 @@ const Login = () => {
     password: "",
   });
 
+  const auth = useAuth();
+
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
-  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await onLogin(values);
-      dispatch(authenticateUser());
-      localStorage.setItem("isAuth", "true");
-      console.log(response.data.message);
+      auth.login();
       setValues({ email: "", password: "" });
       Swal.fire("Login Successful", response.data.message, "success");
 
@@ -36,7 +34,6 @@ const Login = () => {
     } catch (error) {
       setValues({ email: "", password: "" });
       Swal.fire("Login Failed", error.response.data.errors[0].msg, "error");
-      console.log(error.response.data.errors);
     }
   };
 
@@ -57,6 +54,7 @@ const Login = () => {
               placeholder="Enter your email"
               autoComplete="off"
               value={values.email}
+              required
               onChange={(e) => onChange(e)}
             />
           </div>
@@ -70,6 +68,7 @@ const Login = () => {
               placeholder="Enter your password"
               autoComplete="off"
               value={values.password}
+              required
               onChange={(e) => onChange(e)}
             />
           </div>
@@ -99,9 +98,9 @@ const Login = () => {
             Login with Gmail
           </button>
         </div>
-        <a href="/forgot-password" className="forgot-password-label">
+        <Link to="/forgot-password" className="forgot-password-label">
           Forgot password?
-        </a>
+        </Link>
       </div>
     </Layout>
   );

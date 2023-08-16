@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { PORT, CLIENT_URL } = require("./constants/config");
+const { PORT, CLIENT_URL, BASE_URL } = require("./constants/config");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const cors = require("cors");
@@ -17,7 +17,7 @@ app.use("/api", authRoutes);
 const appStart = () => {
   try {
     app.listen(PORT, () => {
-      console.log(`The server is running at http://localhost:${PORT}`);
+      console.log(`The server is running at ${BASE_URL}:${PORT}`);
     });
   } catch (error) {
     console.log(`Error: ${error.message}`);

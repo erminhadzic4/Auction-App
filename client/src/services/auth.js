@@ -1,22 +1,23 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 export async function onRegistration(data) {
-  return await axios.post("http://localhost:8000/api/register", data);
+  return await axios.post(`${baseURL}/api/register`, data);
 }
 
 export async function onLogin(data) {
-  return await axios.post("http://localhost:8000/api/login", data);
+  return await axios.post(`${baseURL}/api/login`, data);
 }
 
 export async function onLogout() {
-  return await axios.get("http://localhost:8000/api/logout");
+  return await axios.get(`${baseURL}/api/logout`);
 }
 
 export async function fetchProtectedInfo(data) {
-  return await axios.get("http://localhost:8000/api/protected");
+  return await axios.get(`${baseURL}/api/protected`);
 }
 
 export async function getUserInfo(data) {
-  return await axios.get("http://localhost:8000/api/get-users");
+  return await axios.get(`${baseURL}/api/get-users`);
 }

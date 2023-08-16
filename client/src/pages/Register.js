@@ -1,6 +1,6 @@
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -14,6 +14,7 @@ const Register = () => {
     lastname: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const onChange = (e) => {
@@ -22,10 +23,25 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (values.password !== values.confirmPassword) {
+      Swal.fire(
+        "Passwords do not match",
+        "Please re-enter passwords.",
+        "error"
+      );
+      return;
+    }
+
     try {
       const response = await onRegistration(values);
-      console.log(response.data.message);
-      setValues({ firstname: "", lastname: "", email: "", password: "" });
+      setValues({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
       Swal.fire(
         "Registration Successful",
         response.data.message,
@@ -39,7 +55,6 @@ const Register = () => {
         error.response.data.errors[0].msg,
         "error"
       );
-      console.log(error.response.data.errors);
     }
   };
 
@@ -112,6 +127,20 @@ const Register = () => {
               onChange={(e) => onChange(e)}
             />
           </div>
+          <div className="input-group label-typography">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              className="input-field"
+              placeholder="Confirm your password"
+              autoComplete="off"
+              value={values.confirmPassword}
+              required
+              onChange={(e) => onChange(e)}
+            />
+          </div>
           <button className="register-button">Register</button>
         </form>
         <div className="social-buttons">
@@ -132,9 +161,9 @@ const Register = () => {
         </div>
         <span className="already-have-container">
           Already have an account?
-          <a href="/login" className="already-have-label">
+          <Link to="/login" className="already-have-label">
             Login
-          </a>
+          </Link>
         </span>
       </div>
     </Layout>
