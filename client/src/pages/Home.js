@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import "../styles/Styles.css";
+import "../styles/AuctionLandingPage.css";
+import { getCategories } from "../services/utils";
 
 const Home = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories()
+      .then((response) => {
+        const data = response.data;
+        if (data.success) {
+          setCategories(data.users);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
   return (
     <Layout>
       <div className="auction-container">
         <div className="left-column">
           <p className="category-title">CATEGORIES</p>
-          <div className="category-item">Fashion</div>
-          <hr className="category-divider" />
-          <div className="category-item">Accessories</div>
-          <hr className="category-divider" />
-          <div className="category-item">Jewelry</div>
-          <hr className="category-divider" />
-          <div className="category-item">Shoes</div>
-          <hr className="category-divider" />
-          <div className="category-item">Sportware</div>
-          <hr className="category-divider" />
-          <div className="category-item">Home</div>
-          <hr className="category-divider" />
-          <div className="category-item">Electronics</div>
-          <hr className="category-divider" />
-          <div className="category-item">Mobile</div>
-          <hr className="category-divider" />
-          <div className="category-item">Computer</div>
-          <hr className="category-divider" />
-          <div className="category-item">All categories</div>
-          {/* Add more categories */}
+          {categories.map((category, index) => (
+            <React.Fragment key={index}>
+              <div className="category-item">{category.name}</div>
+              {index < categories.length - 1 && (
+                <hr className="category-divider" />
+              )}
+            </React.Fragment>
+          ))}
         </div>
         <div className="right-column">
           <div className="product-card">
