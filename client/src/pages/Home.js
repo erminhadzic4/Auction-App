@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import "../styles/AuctionLandingPage.css";
 import { getCategories } from "../services/utils";
+import "../styles/LandingPage.css";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -48,8 +48,36 @@ const Home = () => {
               <button className="product-bid-button">BID NOW</button>
             </div>
             <div className="product-image">
-              <img src="shoes_test.jpg" alt="Product" />
+              <img src="product.png" alt="Product" />
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="card-container">
+        <div className="content-section">
+          <div className="card">
+            <img src="product.png" />
+            <h2>Card One</h2>
+            <span className="card-text">Start From</span>
+            <span className="card-price"> $59.99</span>
+          </div>
+          <div className="card">
+            <img src="product.png" />
+            <h2>Card Two</h2>
+            <span className="card-text">Start From</span>
+            <span className="card-price"> $59.99</span>
+          </div>
+          <div className="card">
+            <img src="product.png" />
+            <h2>Card Three</h2>
+            <span className="card-text">Start From</span>
+            <span className="card-price"> $59.99</span>
+          </div>
+          <div className="card">
+            <img src="product.png" />
+            <h2>Card Four</h2>
+            <span className="card-text">Start From</span>
+            <span className="card-price"> $59.99</span>
           </div>
         </div>
       </div>

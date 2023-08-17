@@ -1,13 +1,10 @@
 const { Router } = require("express");
 const {
   getUsers,
-  getCategories,
   register,
   login,
   protected,
   logout,
-  createCategory,
-  deleteCategory,
 } = require("../controllers/auth-controller");
 const { updateUser, deleteUser } = require("../controllers/user-controller");
 const {
@@ -20,6 +17,18 @@ const {
 } = require("../middlewares/validations-middleware");
 
 const { userAuth } = require("../middlewares/auth-middleware");
+const {
+  createCategory,
+  deleteCategory,
+  getCategories,
+} = require("../controllers/category-controller");
+const {
+  createProduct,
+  getProduct,
+  getProducts,
+  updateProduct,
+  deleteProduct,
+} = require("../controllers/product-controller");
 const router = Router();
 
 // User routes
@@ -42,5 +51,12 @@ router.post(
   createCategory
 );
 router.delete("/category", deleteCategory);
+
+// Product routes
+router.post("/products", createProduct);
+router.get("/products", getProducts);
+router.get("/products/:id", getProduct);
+router.patch("/products/:id", updateProduct);
+router.delete("/products/:id", deleteProduct);
 
 module.exports = router;

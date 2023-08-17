@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext";
 import "../styles/Header.css";
 
 const Header = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
-  const { isAuth } = useAuth();
+  const isAuth = localStorage.getItem("isAuth") === "true";
 
   useEffect(() => {
     const pathname = location.pathname;
