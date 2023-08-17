@@ -1,9 +1,9 @@
 import React from "react";
-import "../styles/Styles.css";
-import "../styles/AboutUs.css";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import Layout from "../components/Layout";
+import "../styles/Styles.css";
+import "../styles/AboutUs.css";
 
 const TermsAndConditions = () => {
   return (

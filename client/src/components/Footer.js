@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/Footer.css";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll";
+import "../styles/Footer.css";
 
 const Footer = () => {
   const scrollToTop = () => {

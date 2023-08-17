@@ -1,7 +1,7 @@
 import Layout from "./Layout";
 import React from "react";
-import "../styles/NotFound.css";
 import { Link, useLocation } from "react-router-dom";
+import "../styles/NotFound.css";
 
 const NotFound = () => {
   const location = useLocation();

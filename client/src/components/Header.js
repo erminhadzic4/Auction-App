@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
 import "../styles/Header.css";
 
 const Header = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
+  const { isAuth } = useAuth();
 
   useEffect(() => {
     const pathname = location.pathname;
@@ -63,7 +65,7 @@ const Header = () => {
         >
           SHOP
         </Link>
-        {localStorage.getItem("isAuth") === "true" ? (
+        {isAuth ? (
           <Link
             to="/my-account"
             className={`navigation-link ${
@@ -80,24 +82,22 @@ const Header = () => {
     </>
   );
 
-  const greeting =
-    localStorage.getItem("isAuth") === "true" ? (
+  const greeting = isAuth ? (
+    <span className="user-action">
+      {" "}
+      Hi, {localStorage.getItem("firstname")} {localStorage.getItem("lastname")}
+    </span>
+  ) : (
+    <>
       <span className="user-action">
-        {" "}
-        Hi, {localStorage.getItem("firstname")}{" "}
-        {localStorage.getItem("lastname")}
+        <Link to="/login">Login</Link>
       </span>
-    ) : (
-      <>
-        <span className="user-action">
-          <Link to="/login">Login</Link>
-        </span>
-        <span className="user-action-secondary"> or </span>
-        <span className="user-action">
-          <Link to="/register">Create Account</Link>
-        </span>
-      </>
-    );
+      <span className="user-action-secondary"> or </span>
+      <span className="user-action">
+        <Link to="/register">Create Account</Link>
+      </span>
+    </>
+  );
 
   return (
     <div>

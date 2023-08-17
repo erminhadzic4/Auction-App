@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
-import "../styles/Register.css";
 import Layout from "../components/Layout";
 import { onRegistration } from "../services/auth";
+import "sweetalert2/dist/sweetalert2.min.css";
+import "../styles/Register.css";
 
 const Register = () => {
   const [values, setValues] = useState({

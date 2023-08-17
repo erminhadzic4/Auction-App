@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Layout from "../components/Layout";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "../styles/ForgotPassword.css";
-import Layout from "../components/Layout";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

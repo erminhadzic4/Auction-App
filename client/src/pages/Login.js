@@ -2,12 +2,12 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
-import "../styles/Login.css";
 import Layout from "../components/Layout";
 import { onLogin } from "../services/auth";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "sweetalert2/dist/sweetalert2.min.css";
+import "../styles/Login.css";
 
 const Login = () => {
   const [values, setValues] = useState({

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Styles.css";
 import Layout from "../components/Layout";
 import { fetchProtectedInfo, onLogout } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/Styles.css";
 
 const MyAccount = () => {
   const auth = useAuth();
