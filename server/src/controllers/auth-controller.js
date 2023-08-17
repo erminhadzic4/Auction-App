@@ -121,3 +121,21 @@ exports.createCategory = async (req, res) => {
     });
   }
 };
+
+exports.deleteCategory = async (req, res) => {
+  const { name } = req.body;
+
+  try {
+    await db.query("DELETE FROM categories WHERE name = $1", [name]);
+
+    return res.status(200).json({
+      success: true,
+      message: "Category deleted successfully",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};

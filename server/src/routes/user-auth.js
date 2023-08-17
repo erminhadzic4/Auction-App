@@ -7,6 +7,7 @@ const {
   protected,
   logout,
   createCategory,
+  deleteCategory,
 } = require("../controllers/auth-controller");
 const { updateUser, deleteUser } = require("../controllers/user-controller");
 const {
@@ -40,5 +41,6 @@ router.post(
   validationMiddleware,
   createCategory
 );
+router.delete("/category", deleteCategory);
 
 module.exports = router;
