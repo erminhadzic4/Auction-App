@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { getCategories } from "../services/utils";
+import { getCategories, getProducts } from "../services/utils";
 import "../styles/LandingPage.css";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [selectedItem, setSelectedItem] = useState("new-arrival");
+
+  const handleItemClick = (itemId) => {
+    setSelectedItem(itemId);
+  };
 
   useEffect(() => {
     getCategories()
@@ -19,20 +25,38 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    getProducts(
+      selectedItem === "new-arrival" ? "creation_time" : "ending_time"
+    )
+      .then((response) => {
+        const data = response.data;
+        if (data.success) {
+          setProducts(data.product);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, [selectedItem]);
+
   return (
     <Layout>
       <div className="auction-container">
         <div className="left-column">
           <p className="category-title">CATEGORIES</p>
-          {categories.map((category, index) => (
-            <React.Fragment key={index}>
-              <div className="category-item">{category.name}</div>
-              {index < categories.length - 1 && (
-                <hr className="category-divider" />
-              )}
-            </React.Fragment>
-          ))}
+          <div className="category-list">
+            {categories.map((category, index) => (
+              <React.Fragment key={index}>
+                <div className="category-item">{category.name}</div>
+                {index < categories.length - 1 && (
+                  <hr className="category-divider" />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
+
         <div className="right-column">
           <div className="product-card">
             <div className="product-details">
@@ -53,32 +77,35 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="filter-menu">
+        <div
+          className={`menu-item ${
+            selectedItem === "new-arrival" ? "selected" : ""
+          }`}
+          onClick={() => handleItemClick("new-arrival")}
+        >
+          New Arrival
+        </div>
+        <div
+          className={`menu-item ${
+            selectedItem === "last-chance" ? "selected" : ""
+          }`}
+          onClick={() => handleItemClick("last-chance")}
+        >
+          Last Chance
+        </div>
+      </div>
+      <hr className="filter-divider" />
       <div className="card-container">
         <div className="content-section">
-          <div className="card">
-            <img src="product.png" />
-            <h2>Card One</h2>
-            <span className="card-text">Start From</span>
-            <span className="card-price"> $59.99</span>
-          </div>
-          <div className="card">
-            <img src="product.png" />
-            <h2>Card Two</h2>
-            <span className="card-text">Start From</span>
-            <span className="card-price"> $59.99</span>
-          </div>
-          <div className="card">
-            <img src="product.png" />
-            <h2>Card Three</h2>
-            <span className="card-text">Start From</span>
-            <span className="card-price"> $59.99</span>
-          </div>
-          <div className="card">
-            <img src="product.png" />
-            <h2>Card Four</h2>
-            <span className="card-text">Start From</span>
-            <span className="card-price"> $59.99</span>
-          </div>
+          {products.map((product, index) => (
+            <div className="card" key={index}>
+              <img src={product.image} alt={`Product ${index + 1}`} />
+              <h2>{product.name}</h2>
+              <span className="card-text">Start From</span>
+              <span className="card-price"> ${product.starting_price}</span>
+            </div>
+          ))}
         </div>
       </div>
     </Layout>

@@ -12,9 +12,12 @@ exports.createProduct = async (req, res) => {
     image,
   } = req.body;
 
+  const creation_time = new Date();
+  console.log(creation_time);
+
   try {
     await db.query(
-      "INSERT INTO products (name, description, starting_price, current_price, ending_time, seller_id, category_id, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+      "INSERT INTO products (name, description, starting_price, current_price, ending_time, seller_id, category_id, created_at, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
       [
         name,
         description,
@@ -23,6 +26,7 @@ exports.createProduct = async (req, res) => {
         ending_time,
         seller_id,
         category_id,
+        creation_time,
         image,
       ]
     );
@@ -81,10 +85,27 @@ exports.getProducts = async (req, res) => {
       });
     }
 
-    const product = rows;
+    const { sort } = req.query;
+
+    let sortedProducts = [...rows];
+
+    if (sort === "creation_time") {
+      sortedProducts = sortedProducts.sort((a, b) => {
+        const aCreationTime = new Date(a.created_at).getTime();
+        const bCreationTime = new Date(b.created_at).getTime();
+        return bCreationTime - aCreationTime;
+      });
+    } else if (sort === "ending_time") {
+      sortedProducts = sortedProducts.sort((a, b) => {
+        const aEndingTime = new Date(a.ending_time).getTime();
+        const bEndingTime = new Date(b.ending_time).getTime();
+        return aEndingTime - bEndingTime;
+      });
+    }
+
     return res.status(200).json({
       success: true,
-      product,
+      product: sortedProducts,
     });
   } catch (error) {
     console.log(error.message);
@@ -156,6 +177,23 @@ exports.deleteProduct = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Product deleted successfully",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+exports.deleteAllProducts = async (req, res) => {
+  try {
+    await db.query("DELETE FROM products");
+
+    return res.status(200).json({
+      success: true,
+      message: "All products have been deleted.",
     });
   } catch (error) {
     console.log(error.message);

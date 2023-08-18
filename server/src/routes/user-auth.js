@@ -28,6 +28,7 @@ const {
   getProducts,
   updateProduct,
   deleteProduct,
+  deleteAllProducts,
 } = require("../controllers/product-controller");
 const router = Router();
 
@@ -52,11 +53,12 @@ router.post(
 );
 router.delete("/category", deleteCategory);
 
-// Product routes
+// Products routes
 router.post("/products", createProduct);
 router.get("/products", getProducts);
 router.get("/products/:id", getProduct);
 router.patch("/products/:id", updateProduct);
+router.delete("/products/all", deleteAllProducts);
 router.delete("/products/:id", deleteProduct);
 
 module.exports = router;
