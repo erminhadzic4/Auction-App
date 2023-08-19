@@ -48,10 +48,13 @@ exports.login = async (req, res) => {
     firstname: user.firstname,
     lastname: user.lastname,
     email: user.email,
+    password: user.password,
   };
 
   try {
     const token = await sign(payload, SECRET);
+
+    console.log("User info upon login:", payload);
 
     return res.status(200).cookie("token", token, { httpOnly: true }).json({
       success: true,
@@ -69,11 +72,23 @@ exports.login = async (req, res) => {
 
 exports.protected = async (req, res) => {
   try {
+    const user = req.user;
+
+    const userData = {
+      id: user.id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+    };
+
     return res.status(200).json({
-      info: "my account protected info",
+      info: userData,
     });
   } catch (error) {
     console.log(error.message);
+    return res.status(500).json({
+      error: error.message,
+    });
   }
 };
 

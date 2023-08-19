@@ -43,7 +43,12 @@ const MyAccount = () => {
   ) : (
     <Layout>
       <h1>My Account</h1>
-      <h2>{protectedData}</h2>
+      <div>
+        <p>ID: {protectedData.id}</p>
+        <p>First Name: {protectedData.firstname}</p>
+        <p>Last Name: {protectedData.lastname}</p>
+        <p>Email: {protectedData.email}</p>
+      </div>
 
       <button onClick={() => logout()}>Logout</button>
     </Layout>

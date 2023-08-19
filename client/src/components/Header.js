@@ -117,6 +117,9 @@ const Header = () => {
       <span className="user-action">
         <Link to="/register">Create Account</Link>
       </span>
+      <span className="user-action">
+        <Link to="/home">Home</Link>
+      </span>
     </>
   );
 

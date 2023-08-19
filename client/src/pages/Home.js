@@ -7,6 +7,7 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedItem, setSelectedItem] = useState("new-arrival");
+  const isAuth = localStorage.getItem("isAuth") === "true";
 
   const handleItemClick = (itemId) => {
     setSelectedItem(itemId);
@@ -58,23 +59,23 @@ const Home = () => {
         </div>
 
         <div className="right-column">
-          <div className="product-card">
-            <div className="product-details">
-              <h5 className="product-title">Running Shoes</h5>
-              <p className="product-price">Starting from $59.99</p>
-              <p className="product-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum hendrerit odio a erat lobortis auctor. Curabitur
-                sodales pharetra placerat. Aenean auctor luctus tempus. Cras
-                laoreet et magna in dignissim. Nam et tincidunt augue. Vivamus
-                quis malesuada velit. In hac habitasse platea dictumst.
-              </p>
-              <button className="product-bid-button">BID NOW</button>
+          {products.length > 0 && (
+            <div className="product-card">
+              <div className="product-details">
+                <h5 className="product-title">{products[0].name}</h5>
+                <p className="product-price">
+                  Starting from ${products[0].starting_price}
+                </p>
+                <p className="product-description">{products[0].description}</p>
+                {isAuth && (
+                  <button className="product-bid-button">BID NOW</button>
+                )}
+              </div>
+              <div className="product-image">
+                <img src={products[0].image} alt={products[0].name} />
+              </div>
             </div>
-            <div className="product-image">
-              <img src="product.png" alt="Product" />
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="filter-menu">
