@@ -74,38 +74,49 @@ exports.getProduct = async (req, res) => {
   }
 };
 
+const generateProductsQuery = (sort, filters) => {
+  let query = "SELECT * FROM products";
+
+  if (filters) {
+    if (filters.category) {
+      query += ` WHERE category_id = ${filters.category}`;
+    }
+    // Here will be added more filters if need be
+  }
+
+  if (sort === "creation_time") {
+    query += " ORDER BY created_at DESC";
+  } else if (sort === "ending_time") {
+    query += " ORDER BY ending_time ASC";
+  }
+
+  return query;
+};
+
 exports.getProducts = async (req, res) => {
   try {
-    const { rows } = await db.query("SELECT * FROM products");
+    const { sort, category } = req.query;
+    const filters = {};
+
+    if (category) {
+      filters.category = category;
+    }
+
+    const query = generateProductsQuery(sort, filters);
+
+    const { rows } = await db.query(query);
 
     if (!rows.length) {
       return res.status(404).json({
         success: false,
-        error: "There are no products",
-      });
-    }
-
-    const { sort } = req.query;
-
-    let sortedProducts = [...rows];
-
-    if (sort === "creation_time") {
-      sortedProducts = sortedProducts.sort((a, b) => {
-        const aCreationTime = new Date(a.created_at).getTime();
-        const bCreationTime = new Date(b.created_at).getTime();
-        return bCreationTime - aCreationTime;
-      });
-    } else if (sort === "ending_time") {
-      sortedProducts = sortedProducts.sort((a, b) => {
-        const aEndingTime = new Date(a.ending_time).getTime();
-        const bEndingTime = new Date(b.ending_time).getTime();
-        return aEndingTime - bEndingTime;
+        error:
+          "There are no products in the database or no products matching the criteria",
       });
     }
 
     return res.status(200).json({
       success: true,
-      product: sortedProducts,
+      product: rows,
     });
   } catch (error) {
     console.log(error.message);
