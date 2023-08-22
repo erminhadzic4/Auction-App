@@ -46,21 +46,24 @@ const Header = () => {
     "/privacy-and-policy",
     "/home",
     "/shop",
+    "/shop/:id",
   ];
 
-  const isSpecialRoute = specialRoutes.includes(location.pathname);
+  const isSpecialRoute = specialRoutes.some((route) =>
+    location.pathname.startsWith(route)
+  );
 
   const headerContent = !isSpecialRoute ? (
     <div className="logo-container-special">
       <div className="logo-wrapper">
-        <img src="auctionCover.png" alt="Cover" className="logo" />
+        <img src="/auctionCover.png" alt="Cover" className="logo" />
       </div>
       <div className="horizontal-line"></div>
     </div>
   ) : (
     <>
       <div className="logo-container">
-        <img src="auctionCover.png" alt="Cover" className="logo" />
+        <img src="/auctionCover.png" alt="Cover" className="logo" />
       </div>
       <div className="search-bar-container">
         <input type="text" placeholder="Search..." className="search-bar" />
@@ -106,6 +109,9 @@ const Header = () => {
       </span>
       <span className="user-action" onClick={() => logout()}>
         Logout
+      </span>
+      <span className="user-action">
+        <Link to="/home">Home</Link>
       </span>
     </>
   ) : (

@@ -203,3 +203,37 @@ exports.deleteAllProducts = async (req, res) => {
     });
   }
 };
+
+exports.getBidsForProduct = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const { rows: productRows } = await db.query(
+      "SELECT * FROM products WHERE product_id = $1",
+      [id]
+    );
+
+    if (productRows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        error: "Product not found",
+      });
+    }
+
+    const { rows: bidRows } = await db.query(
+      "SELECT * FROM bids WHERE product_id = $1",
+      [id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      bids: bidRows,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};

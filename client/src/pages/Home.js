@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import { animateScroll as scroll } from "react-scroll";
 import { getCategories, getProducts } from "../services/utils";
+
 import "../styles/LandingPage.css";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedItem, setSelectedItem] = useState("new-arrival");
-  const isAuth = localStorage.getItem("isAuth") === "true";
 
   const handleItemClick = (itemId) => {
     setSelectedItem(itemId);
@@ -60,21 +62,26 @@ const Home = () => {
 
         <div className="right-column">
           {products.length > 0 && (
-            <div className="product-card">
-              <div className="product-details">
-                <h5 className="product-title">{products[0].name}</h5>
-                <p className="product-price">
-                  Starting from ${products[0].starting_price}
-                </p>
-                <p className="product-description">{products[0].description}</p>
-                {isAuth && (
+            <Link
+              to={`/shop/${products[0].product_id}`}
+              onClick={() => scroll.scrollToTop()}
+            >
+              <div className="product-card">
+                <div className="product-details">
+                  <h5 className="product-title">{products[0].name}</h5>
+                  <p className="product-price">
+                    Starting from ${products[0].starting_price}
+                  </p>
+                  <p className="product-description">
+                    {products[0].description}
+                  </p>
                   <button className="product-bid-button">BID NOW</button>
-                )}
+                </div>
+                <div className="product-image">
+                  <img src={products[0].image} alt={products[0].name} />
+                </div>
               </div>
-              <div className="product-image">
-                <img src={products[0].image} alt={products[0].name} />
-              </div>
-            </div>
+            </Link>
           )}
         </div>
       </div>
@@ -100,12 +107,14 @@ const Home = () => {
       <div className="card-container">
         <div className="content-section">
           {products.map((product, index) => (
-            <div className="card" key={index}>
-              <img src={product.image} alt={`Product ${index + 1}`} />
-              <h2>{product.name}</h2>
-              <span className="card-text">Start From</span>
-              <span className="card-price"> ${product.starting_price}</span>
-            </div>
+            <Link to={`/shop/${product.product_id}`} key={index}>
+              <div className="card">
+                <img src={product.image} alt={`Product ${index + 1}`} />
+                <h2>{product.name}</h2>
+                <span className="card-text">Start From</span>
+                <span className="card-price"> ${product.starting_price}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
