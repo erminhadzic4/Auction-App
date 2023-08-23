@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import { onLogout } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "../styles/Header.css";
 
 const Header = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
-  const { isAuth } = useAuth();
+  const isAuth = localStorage.getItem("isAuth") === "true";
+
+  const logout = async () => {
+    try {
+      await onLogout();
+      auth.logout();
+      navigate("/login");
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   useEffect(() => {
     const pathname = location.pathname;
@@ -25,6 +39,7 @@ const Header = () => {
   };
 
   const specialRoutes = [
+    "/",
     "/my-account",
     "/about-us",
     "/terms-and-conditions",
@@ -83,10 +98,16 @@ const Header = () => {
   );
 
   const greeting = isAuth ? (
-    <span className="user-action">
-      {" "}
-      Hi, {localStorage.getItem("firstname")} {localStorage.getItem("lastname")}
-    </span>
+    <>
+      <span className="user-action">
+        {" "}
+        Hi, {localStorage.getItem("firstname")}{" "}
+        {localStorage.getItem("lastname")}
+      </span>
+      <span className="user-action" onClick={() => logout()}>
+        Logout
+      </span>
+    </>
   ) : (
     <>
       <span className="user-action">
@@ -95,6 +116,9 @@ const Header = () => {
       <span className="user-action-secondary"> or </span>
       <span className="user-action">
         <Link to="/register">Create Account</Link>
+      </span>
+      <span className="user-action">
+        <Link to="/home">Home</Link>
       </span>
     </>
   );
