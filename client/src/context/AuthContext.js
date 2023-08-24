@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("isAuth");
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
+    localStorage.removeItem("id");
     setIsAuthenticated(false);
   };
 

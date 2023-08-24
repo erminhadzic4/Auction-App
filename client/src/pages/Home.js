@@ -20,7 +20,7 @@ const Home = () => {
       .then((response) => {
         const data = response.data;
         if (data.success) {
-          setCategories(data.users);
+          setCategories(data.categories);
         }
       })
       .catch((error) => {

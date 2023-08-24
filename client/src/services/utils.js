@@ -21,3 +21,7 @@ export const getProductDetails = (data) => {
 export const getBidsForProduct = (productId) => {
   return axios.get(`${baseURL}/api/products/${productId}/bids`);
 };
+
+export async function createProduct(data) {
+  return axios.post(`${baseURL}/api/products`, data);
+}
