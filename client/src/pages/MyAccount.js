@@ -168,21 +168,20 @@ const MyAccount = () => {
     } else if (currentStep === 2) {
     } else if (currentStep === 3) {
       try {
-        setLoading(true); // Set loading to true while uploading
+        setLoading(true);
 
         if (selectedImages.length === 0) {
-          // No image selected, handle accordingly
           Swal.fire({
             icon: "error",
             title: "No Image Selected",
             text: "Please select an image before proceeding.",
           });
-          setLoading(false); // Set loading back to false
+          setLoading(false);
           return;
         }
 
         const storage = getStorage();
-        const imageFile = selectedImages[0]; // Get the first selected image
+        const imageFile = selectedImages[0];
         const imageName = `${Date.now()}_${imageFile.name}`;
         const storageRef = ref(storage, `images/${imageName}`);
 
@@ -201,11 +200,10 @@ const MyAccount = () => {
           image: downloadURL,
         });
 
-        // Rest of your code...
-        setLoading(false); // Set loading back to false after uploading
+        setLoading(false);
         setCurrentStep(currentStep + 1);
         console.log("Image uploaded to Firebase:", imageUrl);
-        // ... Rest of the code ...
+
         // console.log({
         //   name: item,
         //     description: description,
@@ -218,7 +216,7 @@ const MyAccount = () => {
         // })
       } catch (error) {
         console.error("Error uploading image:", error);
-        setLoading(false); // Set loading back to false on error
+        setLoading(false);
       }
 
       return;
@@ -256,7 +254,6 @@ const MyAccount = () => {
   }, [progress, active]);
 
   useEffect(() => {
-    // Fetch categories from the API
     async function fetchCategories() {
       try {
         const response = await getCategories();
