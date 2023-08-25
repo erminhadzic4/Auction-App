@@ -67,8 +67,6 @@ exports.getProduct = async (req, res) => {
       [id]
     );
 
-    console.log("Bid amount: " + bidRows[0].bid_count);
-
     const bidCount = bidRows[0].bid_count;
 
     return res.status(200).json({
