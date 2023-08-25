@@ -61,9 +61,20 @@ exports.getProduct = async (req, res) => {
     }
 
     const product = rows[0];
+
+    const { rows: bidRows } = await db.query(
+      "SELECT COUNT(*) AS bid_count FROM bids WHERE product_id = $1",
+      [id]
+    );
+
+    console.log("Bid amount: " + bidRows[0].bid_count);
+
+    const bidCount = bidRows[0].bid_count;
+
     return res.status(200).json({
       success: true,
       product,
+      bidCount,
     });
   } catch (error) {
     console.log(error.message);

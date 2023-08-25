@@ -4,8 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
 import { getProductDetails } from "../services/utils";
-import { getBidsForProduct } from "../services/utils";
 import Swal from "sweetalert2";
+import formatTimeLeft from "../services/dateUtil";
 import "../styles/ProductDetails.css";
 
 const ProductDetails = () => {
@@ -26,7 +26,7 @@ const ProductDetails = () => {
         const data = response.data;
         if (data.success) {
           setProduct(data.product);
-          fetchBidsCount();
+          setbidsCount(data.bidCount);
         } else {
           navigate("/404");
         }
@@ -37,45 +37,8 @@ const ProductDetails = () => {
       });
   }, [id, navigate]);
 
-  const fetchBidsCount = async () => {
-    try {
-      const bidsResponse = await getBidsForProduct(id);
-      if (bidsResponse.data.success) {
-        setbidsCount(bidsResponse.data.bids.length);
-      }
-    } catch (error) {
-      console.error("Error fetching bids count:", error);
-    }
-  };
-
   const handleBidChange = (event) => {
     setBidAmount(event.target.value);
-  };
-
-  const formatTimeLeft = (endingTime) => {
-    const now = new Date();
-    const endDate = new Date(endingTime);
-    const timeDifference = endDate - now;
-
-    const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
-    const days = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24)
-    );
-
-    if (weeks === 0 && days <= 1) {
-      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-      const minutes = Math.floor(
-        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-      );
-
-      return `${hours} hour${hours !== 1 ? "s" : ""} ${minutes} minute${
-        minutes !== 1 ? "s" : ""
-      }`;
-    }
-
-    return `${weeks} week${weeks !== 1 ? "s" : ""} ${days} day${
-      days !== 1 ? "s" : ""
-    }`;
   };
 
   const handlePlaceBid = () => {
