@@ -51,6 +51,10 @@
   max-height: 100%;
 }
 
+h5 {
+  color: black;
+}
+
 .product-details {
   display: flex;
   flex-direction: column;

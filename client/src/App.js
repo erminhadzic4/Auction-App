@@ -14,6 +14,7 @@ import MyAccount from "./pages/MyAccount";
 import ForgotPassword from "./pages/ForgotPassword";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import ProductDetails from "./components/ProductDetails";
 import NotFound from "./components/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuth } from "./context/AuthContext";
@@ -43,6 +44,7 @@ const App = () => {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
+          <Route path="/shop/:id" element={<ProductDetails />} />
 
           <Route element={<PrivateRoutes />}>
             <Route path="/my-account" element={<MyAccount />} />

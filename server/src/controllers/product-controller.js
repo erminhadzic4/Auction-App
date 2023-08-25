@@ -61,9 +61,18 @@ exports.getProduct = async (req, res) => {
     }
 
     const product = rows[0];
+
+    const { rows: bidRows } = await db.query(
+      "SELECT COUNT(*) AS bid_count FROM bids WHERE product_id = $1",
+      [id]
+    );
+
+    const bidCount = bidRows[0].bid_count;
+
     return res.status(200).json({
       success: true,
       product,
+      bidCount,
     });
   } catch (error) {
     console.log(error.message);
@@ -205,6 +214,40 @@ exports.deleteAllProducts = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "All products have been deleted.",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+exports.getBidsForProduct = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const { rows: productRows } = await db.query(
+      "SELECT * FROM products WHERE product_id = $1",
+      [id]
+    );
+
+    if (productRows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        error: "Product not found",
+      });
+    }
+
+    const { rows: bidRows } = await db.query(
+      "SELECT * FROM bids WHERE product_id = $1",
+      [id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      bids: bidRows,
     });
   } catch (error) {
     console.log(error.message);
