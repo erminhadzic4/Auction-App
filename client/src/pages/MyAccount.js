@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { createProduct, getCategories } from "../services/utils";
 import { FaArrowRight, FaTimesCircle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -11,7 +12,6 @@ import Circle from "../components/Circle";
 import "../styles/ProgressBar.css";
 import "../styles/Styles.css";
 import "../styles/MyAccount.css";
-import { createProduct, getCategories } from "../services/utils";
 
 const MyAccount = () => {
   const auth = useAuth();
@@ -141,33 +141,39 @@ const MyAccount = () => {
     setSelectedCategoryId(e.target.value);
   };
 
-  const handleSubcategoryChange = (e) => {
-    setSubcategory(e.target.value);
-  };
-
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
 
   const handleNextStep = async () => {
     if (currentStep === 1) {
-      // if (
-      //   !item ||
-      //   !category ||
-      //   !subcategory ||
-      //   !description ||
-      //   selectedImages.length < 1
-      // ) {
-      //   Swal.fire({
-      //     icon: "error",
-      //     title: "Oops...",
-      //     text: "Please fill in all required fields and add at least 1 image.",
-      //   });
-      //   return;
-      // }
+      if (!item || !category || !description || selectedImages.length < 1) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please fill in all required fields and add at least 1 image.",
+        });
+        return;
+      }
     } else if (currentStep === 2) {
+      if (!startPrice || !startingDate || !endingDate) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please fill in all required fields and add at least 1 image.",
+        });
+        return;
+      }
     } else if (currentStep === 3) {
       try {
+        if (!address || !email || !city || !zip || !country || !phone) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please fill in all required fields and add at least 1 image.",
+          });
+          return;
+        }
         setLoading(true);
 
         if (selectedImages.length === 0) {
@@ -201,19 +207,29 @@ const MyAccount = () => {
         });
 
         setLoading(false);
-        setCurrentStep(currentStep + 1);
-        console.log("Image uploaded to Firebase:", imageUrl);
 
-        // console.log({
-        //   name: item,
-        //     description: description,
-        //     starting_price: startPrice,
-        //     current_price: startPrice,
-        //     ending_time: endingDate,
-        //     seller_id: id,
-        //     category_id: selectedCategoryId,
-        //     image: imageUrl,
-        // })
+        let timerInterval;
+        Swal.fire({
+          title: "Item successfully added!",
+          html: "I will close in <b></b> milliseconds.",
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const b = Swal.getHtmlContainer().querySelector("b");
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft();
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+            navigate("/home");
+          },
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            navigate("/home");
+          }
+        });
       } catch (error) {
         console.error("Error uploading image:", error);
         setLoading(false);
@@ -222,26 +238,6 @@ const MyAccount = () => {
       return;
     }
     setCurrentStep(currentStep + 1);
-    console.log("Step 1 info:", {
-      item,
-      category,
-      subcategory,
-      description,
-      selectedImages,
-    });
-    console.log("Step 2 info:", {
-      startPrice,
-      startingDate,
-      endingDate,
-    });
-    console.log("Step 3 info:", {
-      address,
-      email,
-      city,
-      zip,
-      country,
-      phone,
-    });
     active >= progress ? setActive(progress) : setActive(active + 1);
   };
 
@@ -292,28 +288,6 @@ const MyAccount = () => {
             <div className="progress" style={{ width: width + "%" }}></div>
             {arr}
           </div>
-          {/* <div className="buttons">
-            <button
-              className="btn-prev"
-              disabled={active > 0 ? false : true}
-              onClick={() => {
-                active <= 0 ? setActive(0) : setActive(active - 1);
-              }}
-            >
-              Prev
-            </button>
-            <button
-              className="btn-next"
-              disabled={active >= progress - 1 ? true : false}
-              onClick={() => {
-                active >= progress
-                  ? setActive(progress)
-                  : setActive(active + 1);
-              }}
-            >
-              Next
-            </button>
-          </div> */}
         </div>
       </div>
       {currentStep === 1 && (
@@ -352,19 +326,6 @@ const MyAccount = () => {
                       {cat.category_id}. {cat.name}
                     </option>
                   ))}
-                </select>
-                <select
-                  id="subcategory"
-                  name="subcategory"
-                  className="drop-down"
-                  value={subcategory}
-                  placeholder="Choose subcategory"
-                  onChange={handleSubcategoryChange}
-                  required
-                >
-                  <option value="subcategory1">Subcategory 1</option>
-                  <option value="subcategory2">Subcategory 2</option>
-                  <option value="subcategory3">Subcategory 3</option>
                 </select>
               </div>
               <div className="input-group">

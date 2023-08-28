@@ -57,25 +57,34 @@ const ProductDetails = () => {
     const endDate = new Date(endingTime);
     const timeDifference = endDate - now;
 
+    if (timeDifference <= 0) {
+      return "Expired";
+    }
+
     const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
     const days = Math.floor(
       (timeDifference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24)
     );
+    const hours = Math.floor(
+      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+    );
 
-    if (weeks === 0 && days <= 1) {
-      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-      const minutes = Math.floor(
-        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-      );
-
+    if (weeks > 0 && days > 0) {
+      return `${weeks} week${weeks !== 1 ? "s" : ""} ${days} day${
+        days !== 1 ? "s" : ""
+      }`;
+    } else if (weeks > 0) {
+      return `${weeks} week${weeks !== 1 ? "s" : ""}`;
+    } else if (days > 0) {
+      return `${days} day${days !== 1 ? "s" : ""}`;
+    } else {
       return `${hours} hour${hours !== 1 ? "s" : ""} ${minutes} minute${
         minutes !== 1 ? "s" : ""
       }`;
     }
-
-    return `${weeks} week${weeks !== 1 ? "s" : ""} ${days} day${
-      days !== 1 ? "s" : ""
-    }`;
   };
 
   const handlePlaceBid = () => {
