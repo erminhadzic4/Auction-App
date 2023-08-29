@@ -3,7 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
-import { getProductDetails, placeBid } from "../services/utils";
+import {
+  getHighestBidForProduct,
+  getProductDetails,
+  placeBid,
+} from "../services/utils";
 import { getBidsForProduct } from "../services/utils";
 import Swal from "sweetalert2";
 import "../styles/ProductDetails.css";
@@ -103,21 +107,27 @@ const ProductDetails = () => {
       return;
     }
 
-    if (parseFloat(bidAmount) <= parseFloat(product?.current_price)) {
-      Swal.fire({
-        title: "There are higher bids than yours!",
-        text: "You should give it a second try.",
-        icon: "warning",
-      });
-      return;
-    }
-
     try {
       const bidData = {
         bid_amount: bidAmount,
         bidder_id: localStorage.getItem("id"),
         product_id: id,
       };
+
+      const highestBidResponse = await getHighestBidForProduct(id);
+
+      if (highestBidResponse.data.success) {
+        const highestBid = highestBidResponse.data.highestBid;
+
+        if (parseFloat(bidAmount) <= parseFloat(highestBid)) {
+          Swal.fire({
+            title: "There are higher bids than yours!",
+            text: "You should give it a second try.",
+            icon: "warning",
+          });
+          return;
+        }
+      }
 
       const response = await placeBid(bidData);
 

@@ -21,3 +21,7 @@ export async function fetchProtectedInfo(data) {
 export async function getUserInfo(data) {
   return await axios.get(`${baseURL}/api/get-users`);
 }
+
+export async function getHighestBidForProduct(data) {
+  return await axios.get(`${baseURL}/api/highest-bid/${data}`);
+}
