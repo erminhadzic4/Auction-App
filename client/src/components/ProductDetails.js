@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
-import { getProductDetails } from "../services/utils";
+import { getProductDetails, placeBid } from "../services/utils";
 import { getBidsForProduct } from "../services/utils";
 import Swal from "sweetalert2";
 import "../styles/ProductDetails.css";
@@ -14,6 +14,9 @@ const ProductDetails = () => {
   const [bidAmount, setBidAmount] = useState(null);
   const [bidsCount, setbidsCount] = useState(null);
   const [selectedItem, setSelectedItem] = useState("details");
+  const isSeller = product?.seller_id == localStorage.getItem("id");
+  const isBiddingExpired =
+    product && new Date(product.ending_time) <= new Date();
   const navigate = useNavigate();
 
   const handleItemClick = (itemId) => {
@@ -87,17 +90,63 @@ const ProductDetails = () => {
     }
   };
 
-  const handlePlaceBid = () => {
+  const handlePlaceBid = async () => {
     if (
       !localStorage.getItem("isAuth") ||
       localStorage.getItem("isAuth") !== "true"
-    )
+    ) {
       Swal.fire({
         title: "Login Required",
         text: "You must be logged in to place a bid.",
         icon: "info",
       });
-    return;
+      return;
+    }
+
+    if (parseFloat(bidAmount) <= parseFloat(product?.current_price)) {
+      Swal.fire({
+        title: "There are higher bids than yours!",
+        text: "You should give it a second try.",
+        icon: "warning",
+      });
+      return;
+    }
+
+    try {
+      const bidData = {
+        bid_amount: bidAmount,
+        bidder_id: localStorage.getItem("id"),
+        product_id: id,
+      };
+
+      const response = await placeBid(bidData);
+
+      if (response.data.success) {
+        setProduct((prevProduct) => ({
+          ...prevProduct,
+          current_price: bidAmount,
+        }));
+        setbidsCount(bidsCount + 1);
+        Swal.fire({
+          title: "Congrats!",
+          text: "You are the highest bidder!",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "There was an error placing your bid. Please try again later.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Error placing bid:", error);
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while placing your bid. Please try again later.",
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -147,18 +196,28 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="place-bid-section">
-            <input
-              className="input-field-bid"
-              type="number"
-              placeholder={`Enter ${
-                parseFloat(product?.current_price) + 1
-              }$ or higher`}
-              value={bidAmount}
-              onChange={handleBidChange}
-            />
-            <button className="btn-bid" onClick={handlePlaceBid}>
-              PLACE BID
-            </button>
+            {isSeller ? (
+              <p className="seller-message">
+                You are the seller of this product.
+              </p>
+            ) : isBiddingExpired ? (
+              <p className="seller-message">The bidding time has expired!</p>
+            ) : (
+              <>
+                <input
+                  className="input-field-bid"
+                  type="number"
+                  placeholder={`Enter ${
+                    parseFloat(product?.current_price) + 1
+                  }$ or higher`}
+                  value={bidAmount}
+                  onChange={handleBidChange}
+                />
+                <button className="btn-bid" onClick={handlePlaceBid}>
+                  PLACE BID
+                </button>
+              </>
+            )}
           </div>
           <div className="filter-menu-3">
             <div
