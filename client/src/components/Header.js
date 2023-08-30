@@ -29,7 +29,10 @@ const Header = () => {
       setActiveLink("HOME");
     } else if (pathname === "/shop") {
       setActiveLink("SHOP");
-    } else if (pathname === "/my-account") {
+    } else if (
+      pathname === "/my-account" ||
+      pathname === "/my-account/add-product"
+    ) {
       setActiveLink("MY ACCOUNT");
     }
   }, [location.pathname]);

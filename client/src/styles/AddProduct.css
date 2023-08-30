@@ -1,0 +1,379 @@
+@import "./constants.css";
+
+.form-title {
+  font-family: Lato, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.84px;
+  margin-bottom: 55px;
+}
+
+.item-form {
+  width: fit-content;
+  border: 1px solid var(--neutral-09);
+  background-color: var(--white);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.input-field:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 568px;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  height: 50px;
+  border: 1px solid var(--neutral-09);
+  background-color: var(--white);
+}
+
+.cancel-button {
+  width: 278px;
+  height: 56px;
+  margin-top: 50px;
+  color: var(--neutral-00);
+  border: 2px solid var(--neutral-09);
+  font-size: 18px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.next-button {
+  width: 278px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.left-section .cancel-button {
+  width: 175px;
+  height: 56px;
+  margin-top: 50px;
+  color: var(--neutral-00);
+  border: 2px solid var(--neutral-09);
+  font-size: 18px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.right-section .next-button {
+  width: 150px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.right-section .back-button {
+  width: 150px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--white);
+  color: var(--neutral-00);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.categories {
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.drop-down {
+  width: 586px;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  height: 50px;
+  border: 1px solid var(--neutral-09);
+  background-color: var(--white);
+}
+
+#category {
+  margin-right: 10px;
+}
+
+#subcategory {
+  margin-left: 10px;
+}
+
+#description {
+  height: 200px;
+  resize: none;
+}
+
+.social-button {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 12px 0;
+  margin: 0 10px;
+  background-color: var(--white);
+  border: 1px solid var(--neutral-09);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.social-button-icon-primary {
+  color: #1877f2;
+  height: 40px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.social-button-icon-secondary {
+  color: #db4437;
+  height: 40px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.forgot-password-label {
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--primary-color);
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.label-typography {
+  font-family: Lato, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+.input-field:focus {
+  background-color: var(--white);
+  border-color: var(--neutral-09);
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--neutral-05);
+}
+
+.login-button:hover {
+  background-color: #a089e6;
+}
+
+.social-button:hover {
+  background-color: var(--neutral-09);
+}
+
+.upload-text {
+  color: var(--primary-primary, #8367d8);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.dnd-text {
+  color: var(--neutral-00, #252525);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.minimum-text {
+  color: var(--neutral-05, #9b9b9b);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 24px;
+}
+
+.image-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.image-icon {
+  display: flex;
+  align-items: center;
+}
+
+.image-name {
+  font-size: 14px;
+  color: var(--neutral-05);
+  margin-left: 5px;
+}
+
+.image-dropzone {
+  width: 586px;
+  border: 2px dashed var(--neutral-neutral-09, #d8d8d8);
+  background: var(--neutral-white, #fff);
+  height: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.price-icon {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 10%;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+  border-right: 0px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.date-input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  width: auto;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.date-label {
+  font-family: Lato, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+  margin-bottom: 8px;
+}
+
+#endingDate {
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  height: 50px;
+  border: 1px solid var(--neutral-09);
+  background-color: var(--white);
+}
+
+#startingDate {
+  width: 250px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  height: 50px;
+  border: 1px solid var(--neutral-09);
+  background-color: var(--white);
+}
+
+input[type="date"]::before {
+  content: attr(placeholder);
+  position: absolute;
+  color: #999999;
+}
+
+input[type="date"] {
+  color: #ffffff;
+}
+
+input[type="date"]:focus,
+input[type="date"]:valid {
+  color: #666666;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  content: "";
+}
+
+.caution-text {
+  display: flex;
+  width: 586px;
+  color: var(--neutral-neutral-05, #9b9b9b);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.number-input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.number-text {
+  display: flex;
+  color: var(--error);
+  background-color: var(--neutral-09);
+  height: 50px;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+  border-left: 0px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+#phone {
+  width: 445px;
+}
