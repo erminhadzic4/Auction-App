@@ -156,3 +156,14 @@ a {
 input::placeholder {
   color: var(--neutral-05);
 }
+
+.loading-div {
+  line-height: 500px;
+  min-height: 568px;
+  text-align: center;
+}
+
+.loading-div h1 {
+  align-self: center;
+  font-size: 30px;
+}

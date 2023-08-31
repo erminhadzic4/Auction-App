@@ -10,8 +10,8 @@ import {
 } from "../services/utils";
 import { getBidsForProduct } from "../services/utils";
 import Swal from "sweetalert2";
-import formatTimeLeft from "../services/dateUtil";
 import "../styles/ProductDetails.css";
+import formatTimeLeft from "../services/dateUtil";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,6 +20,7 @@ const ProductDetails = () => {
   const [bidsCount, setbidsCount] = useState(null);
   const [selectedItem, setSelectedItem] = useState("details");
   const isSeller = product?.seller_id == localStorage.getItem("id");
+  console.log(product?.seller_id + " " + localStorage.getItem("id"));
   const isBiddingExpired =
     product && new Date(product.ending_time) <= new Date();
   const navigate = useNavigate();
@@ -49,41 +50,6 @@ const ProductDetails = () => {
     setBidAmount(event.target.value);
   };
 
-  const formatTimeLeft = (endingTime) => {
-    const now = new Date();
-    const endDate = new Date(endingTime);
-    const timeDifference = endDate - now;
-
-    if (timeDifference <= 0) {
-      return "Expired";
-    }
-
-    const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
-    const days = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24)
-    );
-    const hours = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-    );
-
-    if (weeks > 0 && days > 0) {
-      return `${weeks} week${weeks !== 1 ? "s" : ""} ${days} day${
-        days !== 1 ? "s" : ""
-      }`;
-    } else if (weeks > 0) {
-      return `${weeks} week${weeks !== 1 ? "s" : ""}`;
-    } else if (days > 0) {
-      return `${days} day${days !== 1 ? "s" : ""}`;
-    } else {
-      return `${hours} hour${hours !== 1 ? "s" : ""} ${minutes} minute${
-        minutes !== 1 ? "s" : ""
-      }`;
-    }
-  };
-
   const handlePlaceBid = async () => {
     if (
       !localStorage.getItem("isAuth") ||
@@ -103,6 +69,8 @@ const ProductDetails = () => {
         bidder_id: localStorage.getItem("id"),
         product_id: id,
       };
+
+      console.log(bidData);
 
       const highestBidResponse = await getHighestBidForProduct(id);
 
@@ -126,7 +94,7 @@ const ProductDetails = () => {
           ...prevProduct,
           current_price: bidAmount,
         }));
-        setbidsCount(bidsCount + 1);
+        setbidsCount(parseFloat(bidsCount) + 1);
         Swal.fire({
           title: "Congrats!",
           text: "You are the highest bidder!",
