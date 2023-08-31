@@ -22,6 +22,14 @@ const AddProduct = () => {
   const [active, setActive] = useState(0);
   const [width, setWidth] = useState(0);
   const arr = [];
+  let stepClassName = "";
+  if (currentStep === 1) {
+    stepClassName = "progress-0";
+  } else if (currentStep === 2) {
+    stepClassName = "progress-50";
+  } else if (currentStep === 3) {
+    stepClassName = "progress-100";
+  }
   for (let i = 0; i < progress; i++) {
     arr.push(
       <Circle classname={i <= active ? "circle active" : "circle"} key={i}>
@@ -286,18 +294,7 @@ const AddProduct = () => {
       <div className="progress-container">
         <div className="content">
           <div className="progressbar">
-            <div
-              className={`progress ${
-                currentStep === 0
-                  ? "progress-0"
-                  : currentStep === 1
-                  ? "progress-50"
-                  : currentStep === 2
-                  ? "progress-100"
-                  : ""
-              }`}
-              style={{ width: width + "%" }}
-            ></div>
+            <div className={`progress ${stepClassName}`}></div>
             {arr}
           </div>
         </div>
