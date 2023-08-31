@@ -25,3 +25,11 @@ export const getBidsForProduct = (productId) => {
 export async function createProduct(data) {
   return axios.post(`${baseURL}/api/products`, data);
 }
+
+export async function placeBid(data) {
+  return axios.post(`${baseURL}/api/bid`, data);
+}
+
+export async function getHighestBidForProduct(data) {
+  return await axios.get(`${baseURL}/api/highest-bid/${data}`);
+}

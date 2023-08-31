@@ -31,6 +31,7 @@ const {
   deleteAllProducts,
   getBidsForProduct,
 } = require("../controllers/product-controller");
+const { createBid, getHighestBid } = require("../controllers/bid-controller");
 const router = Router();
 
 // User routes
@@ -62,5 +63,9 @@ router.patch("/products/:id", updateProduct);
 router.delete("/products/all", deleteAllProducts);
 router.delete("/products/:id", deleteProduct);
 router.get("/products/:id/bids", getBidsForProduct);
+
+// Bidding routes
+router.get("/highest-bid/:product_id", getHighestBid);
+router.post("/bid", createBid);
 
 module.exports = router;
