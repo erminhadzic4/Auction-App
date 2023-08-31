@@ -14,6 +14,15 @@ app.use(passport.initialize());
 
 app.use("/api", authRoutes);
 
-app.use("/api", authRoutes);
+const appStart = () => {
+  try {
+    app.listen(PORT, () => {
+      console.log(`The server is running at ${BASE_URL}`);
+      console.log(`current port is: ${PORT}`);
+    });
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
+};
 
-console.log(`The server is running at ${BASE_URL}`);
+appStart();
