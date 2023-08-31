@@ -20,7 +20,6 @@ const ProductDetails = () => {
   const [bidsCount, setbidsCount] = useState(null);
   const [selectedItem, setSelectedItem] = useState("details");
   const isSeller = product?.seller_id == localStorage.getItem("id");
-  console.log(product?.seller_id + " " + localStorage.getItem("id"));
   const isBiddingExpired =
     product && new Date(product.ending_time) <= new Date();
   const navigate = useNavigate();
@@ -69,8 +68,6 @@ const ProductDetails = () => {
         bidder_id: localStorage.getItem("id"),
         product_id: id,
       };
-
-      console.log(bidData);
 
       const highestBidResponse = await getHighestBidForProduct(id);
 
