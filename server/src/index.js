@@ -17,5 +17,3 @@ app.use("/api", authRoutes);
 app.use("/api", authRoutes);
 
 console.log(`The server is running at ${BASE_URL}`);
-
-appStart();
