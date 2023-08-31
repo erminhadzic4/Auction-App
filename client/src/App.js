@@ -18,6 +18,7 @@ import ProductDetails from "./components/ProductDetails";
 import NotFound from "./components/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import { useAuth } from "./context/AuthContext";
+import AddProduct from "./components/AddProduct";
 
 const PrivateRoutes = () => {
   const auth = useAuth();
@@ -48,6 +49,7 @@ const App = () => {
 
           <Route element={<PrivateRoutes />}>
             <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/my-account/add-product" element={<AddProduct />} />
           </Route>
 
           <Route element={<RestrictedRoutes />}>

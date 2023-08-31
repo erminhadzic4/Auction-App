@@ -151,3 +151,7 @@ input::placeholder {
 .social-button:hover {
   background-color: var(--neutral-09);
 }
+
+.login-form .input-field {
+  width: 548px;
+}

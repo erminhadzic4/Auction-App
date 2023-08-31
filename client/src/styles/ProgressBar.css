@@ -1,0 +1,135 @@
+.progress-container {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.content {
+  align-items: center;
+  width: 400px;
+}
+
+.progressbar {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.progressbar::before {
+  content: "";
+  position: absolute;
+  background-color: #e0e0e0;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.progress {
+  position: absolute;
+  background-color: #3498db;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  height: 4px;
+  width: 50%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.progress-0 {
+  width: 0%;
+}
+
+.progress-50 {
+  width: 50%;
+}
+.progress-100 {
+  width: 100%;
+}
+
+.circle {
+  background-color: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #e0e0e0;
+  transform: 0.4s ease;
+}
+
+.circle.active {
+  border-color: #3498db;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-next {
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: green;
+  outline-style: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border: 0;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.btn-prev {
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: green;
+  outline-style: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border: 0;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.btn-next.active {
+  transform: scale(0.98);
+}
+
+.btn-prev.active {
+  transform: scale(0.98);
+}
+
+.btn-next:focus {
+  outline: none;
+}
+
+.btn-prev:focus {
+  outline: none;
+}
+
+.btn-next:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.btn-prev:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}

@@ -32,6 +32,7 @@ const Login = () => {
 
       localStorage.setItem("firstname", response.data.firstname);
       localStorage.setItem("lastname", response.data.lastname);
+      localStorage.setItem("id", response.data.id);
     } catch (error) {
       setValues({ email: "", password: "" });
       Swal.fire("Login Failed", error.response.data.errors[0].msg, "error");

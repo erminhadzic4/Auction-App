@@ -38,11 +38,11 @@ exports.deleteCategory = async (req, res) => {
 
 exports.getCategories = async (req, res) => {
   try {
-    const { rows } = await db.query("select name from categories");
+    const { rows } = await db.query("select name, category_id from categories");
 
     return res.status(200).json({
       success: true,
-      users: rows,
+      categories: rows,
     });
   } catch (error) {
     console.log(error.message);

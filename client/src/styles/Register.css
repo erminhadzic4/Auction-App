@@ -135,3 +135,7 @@ input::placeholder {
 .register-button:hover {
   background-color: #a089e6;
 }
+
+.register-form .input-field {
+  width: 548px;
+}

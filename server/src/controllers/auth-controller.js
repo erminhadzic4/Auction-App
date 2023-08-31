@@ -59,6 +59,7 @@ exports.login = async (req, res) => {
       message: "Logged in succefully",
       firstname: user.firstname,
       lastname: user.lastname,
+      id: user.user_id,
     });
   } catch (error) {
     console.log(error.message);

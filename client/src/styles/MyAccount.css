@@ -1,0 +1,108 @@
+.faIcons {
+  margin-top: 5px;
+}
+
+.top-buttons {
+  justify-content: space-between;
+  display: flex;
+  margin-top: 30px;
+}
+
+.primary-button {
+  width: 130px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: 1px solid var(--neutral-09, #d8d8d8);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.secondary-button {
+  width: 130px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--white);
+  color: var(--neutral-00);
+  border: 1px solid var(--neutral-09, #d8d8d8);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+  margin-left: 10px;
+}
+
+.add-item-button {
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+  height: 56px;
+  margin-top: 50px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: 1px solid var(--neutral-09, #d8d8d8);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.9s ease, color 0.9s ease;
+}
+
+.top-border {
+  line-height: 50px;
+  padding-left: 20px;
+  height: 50px;
+  margin-top: 50px;
+  border: 1px solid var(--neutral-09, #d8d8d8);
+}
+
+.personal-info-form {
+  display: flex;
+}
+
+.profile-image {
+  border-radius: 50%;
+  margin: 30px;
+  background: url("../../public/profile.png"), lightgray 50% / cover no-repeat;
+  margin-right: 20px;
+}
+
+.personal-info-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--neutral-09, #d8d8d8);
+}
+
+.info-left {
+  align-self: baseline;
+  text-align: center;
+  flex: 1;
+}
+
+.info-right {
+  margin-top: 30px;
+  flex: 2;
+}
+
+.date-of-birth {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 93%;
+}
+
+.personal-info-form .input-field {
+  width: 90%;
+}
+
+.date-of-birth div {
+  width: 30%;
+}
+
+#phone-div {
+  width: 532px;
+}
+
+.number-input-divs {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
