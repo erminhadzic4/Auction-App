@@ -8,7 +8,7 @@ const Profile = () => {
       <div className="personal-info-form">
         <div className="info-left">
           <img src="/profile.png" alt="Profile" className="profile-image" />
-          <label>Change picture</label>
+          <p>Change picture</p>
         </div>
         <div className="info-right">
           <div className="input-group">

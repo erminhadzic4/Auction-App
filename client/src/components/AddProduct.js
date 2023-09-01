@@ -210,7 +210,7 @@ const AddProduct = () => {
           starting_price: formData.startPrice,
           current_price: formData.startPrice,
           ending_time: formData.endingDate,
-          seller_id: formData.id,
+          seller_id: id,
           category_id: formData.selectedCategoryId,
           image: downloadURL,
         });
@@ -275,7 +275,9 @@ const AddProduct = () => {
 
   return loading ? (
     <Layout>
-      <h1>Loading ...</h1>
+      <div className="loading-div">
+        <h1>Loading ...</h1>
+      </div>
     </Layout>
   ) : (
     <Layout>

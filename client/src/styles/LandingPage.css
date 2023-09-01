@@ -109,7 +109,9 @@ h5 {
 }
 
 .card-container img {
-  height: 150px;
+  display: flex;
+  margin: auto;
+  height: 200px;
 }
 
 .content-section {
@@ -131,11 +133,6 @@ h5 {
   margin: 20px 0;
   padding-left: 25px;
   padding-right: 25px;
-}
-
-.content-section .card img {
-  width: 100%;
-  height: 200px;
 }
 
 .content-section .card h2 {

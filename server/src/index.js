@@ -17,7 +17,8 @@ app.use("/api", authRoutes);
 const appStart = () => {
   try {
     app.listen(PORT, () => {
-      console.log(`The server is running at ${BASE_URL}:${PORT}`);
+      console.log(`The server is running at ${BASE_URL}`);
+      console.log(`Current port is: ${PORT}`);
     });
   } catch (error) {
     console.log(`Error: ${error.message}`);

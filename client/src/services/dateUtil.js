@@ -23,3 +23,5 @@ const formatTimeLeft = (endingTime) => {
     days !== 1 ? "s" : ""
   }`;
 };
+
+export default formatTimeLeft;
