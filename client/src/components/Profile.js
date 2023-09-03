@@ -99,7 +99,6 @@ const Profile = () => {
                 autoComplete="off"
                 required
               />
-              <div className="number-text">Not verified</div>
             </div>
           </div>
         </div>

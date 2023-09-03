@@ -97,10 +97,6 @@
   width: 30%;
 }
 
-#phone-div {
-  width: 600px;
-}
-
 .number-input-divs {
   display: inline-flex;
   align-items: center;
