@@ -95,7 +95,7 @@ const Profile = () => {
                 id="phone-div"
                 name="phone"
                 className="input-field"
-                placeholder="+3812312371"
+                placeholder="+3812312361"
                 autoComplete="off"
                 required
               />
